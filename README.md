@@ -103,6 +103,5 @@ We can test the code by using test data. We simulate the test data by choosing v
 
 [^1]: T. McAvoy, W. T. Mays, S. M. Salom, and L. T. Kok. Impact of imidacloprid on hemlock woolly adelgid _(Adelges tsugae)_ and water quality at Mt. Lake, Virginia. In B. Onken and R. Reardon, editors, _Third Symposium on Hemlock Woolly Adelgid in the Eastern United States_, pages 324–334. Forest Health Technology Enterprise Team, 2005
 
-[^2]: G. J. Wiggins, J. F. Grant, J. R. Rhea, A. E. Mayfield III, A. Hakeem, P. L. Lambdin, and A. B. L. Galloway. Emergence, seasonality, and hybridization of _Laricobius nigrinus_ (Coleoptera: Derodontidae), an introduced predator of hemlock woolly adelgid (Hemiptera: Adelgidae), in the Tennessee Appalachians. _Environmental Entomology_, 45(6):1371–1378,
-2016. [https://doi.org/10.1093/ee/nvw128](https://doi.org/10.1093/ee/nvw128)
+[^2]: G. J. Wiggins, J. F. Grant, J. R. Rhea, A. E. Mayfield III, A. Hakeem, P. L. Lambdin, and A. B. L. Galloway. Emergence, seasonality, and hybridization of _Laricobius nigrinus_ (Coleoptera: Derodontidae), an introduced predator of hemlock woolly adelgid (Hemiptera: Adelgidae), in the Tennessee Appalachians. _Environmental Entomology_, 45(6):1371–1378, 2016. [https://doi.org/10.1093/ee/nvw128](https://doi.org/10.1093/ee/nvw128)
 
