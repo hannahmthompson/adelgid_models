@@ -61,12 +61,12 @@ The data used for development and parameter estimation for the Adelgid-Predator 
 * `./hemlock_adelgid/` is the directory containing the Hemlock-Adelgid model files
     * `h_likely_mortality_value.m` uses the hemlock time series data to find a proportion tips alive value where tree mortality is likely 
     * `ha_data.xlsx` contains the data used in the Hemlock-Adelgid model
-    * For Group $i=1,2$
-        * `ha_group_i_longterm.m` plots the model results over a longer time using the optimal parameter values found through the parameter estimation for Group $i$ for the Hemlock-Adelgid model
-        * `ha_group_i_paraest.m` is the parameter estimation for Group $i$ for the Hemlock-Adelgid model
-        * `ha_group_i_plot.m` plots the data and model results using the optimal parameter values found through parameter estimation for Group $i$ for the Hemlock-Adelgid model
-        * `ha_group_i_scenarios.m` determines if/when model simulation results reach the proportion tips alive value likely to result in hemlock mortality for varying initial conditions for Group $i$ for the Hemlock-Adelgid model
-        * `ha_group_i_scenarios_plot.m` plots model simulation results for various initial conditions for Group $i$ for the Hemlock-Adelgid model
+    * For Group _i=1,2_
+        * `ha_group_i_longterm.m` plots the model results over a longer time using the optimal parameter values found through the parameter estimation for Group _i_ for the Hemlock-Adelgid model
+        * `ha_group_i_paraest.m` is the parameter estimation for Group _i_ for the Hemlock-Adelgid model
+        * `ha_group_i_plot.m` plots the data and model results using the optimal parameter values found through parameter estimation for Group _i_ for the Hemlock-Adelgid model
+        * `ha_group_i_scenarios.m` determines if/when model simulation results reach the proportion tips alive value likely to result in hemlock mortality for varying initial conditions for Group _i_ for the Hemlock-Adelgid model
+        * `ha_group_i_scenarios_plot.m` plots model simulation results for various initial conditions for Group _i_ for the Hemlock-Adelgid model
     * `ha_scenarios_heatmap.R` plots the results of the varied initial condition scenarios as a heatmap for both groups for the Hemlock-Adelgid model
     
 ## Parameter Estimation
@@ -75,7 +75,7 @@ The files `als_paraest.m`, `ha_group_1_paraest.m` and `ha_group_2_paraest.m` per
 
 The models are implemented as several systems of ordinary differential equations where each system applies during some part of the year. Each of these systems has constant parameter values. Initial conditions for each system are taken from state values at the final time of the previous system (or from some other previous state value, as appropriate to represent the biology). Each system is numerically solved with the numerical ordinary differential equations solver ode45.
 
-We construct a constrained optimization problem where we minimize an objective function over the parameter values and initial conditions. We set upper and lower bounds for each of the parameters estimated. The objective function value is the sum of the relative error for each class where we have data: $$\sum\sqrt\frac{{\sum_{i=1}^{n}(N_{\mathrm{data}}(t_{i})-N_{\mathrm{model}}(t_i))^2}}{{\sum_{i=1}^{n}(N_{\mathrm{data}}(t_i))^2}}$$ where $t_i$ is the time of stage $N$ data $i$, and the outside sum is over the different stages where we have data. We use MultiStart to generate starting points and fmincon attempts to find a minimizer from each of the starting points.
+We construct a constrained optimization problem where we minimize an objective function over the parameter values and initial conditions. We set upper and lower bounds for each of the parameters estimated. The objective function value is the sum of the relative error for each class where we have data: <img src="https://latex.codecogs.com/svg.image?\sum\sqrt\frac{{\sum_{i=1}^{n}(N_{\mathrm{data}}(t_{i})-N_{\mathrm{model}}(t_i))^2}}{{\sum_{i=1}^{n}(N_{\mathrm{data}}(t_i))^2}}" title="\sum\sqrt\frac{{\sum_{i=1}^{n}(N_{\mathrm{data}}(t_{i})-N_{\mathrm{model}}(t_i))^2}}{{\sum_{i=1}^{n}(N_{\mathrm{data}}(t_i))^2}}" /> where <img src="https://latex.codecogs.com/svg.image?t_i" title="t_i" /> is the time of stage _N_ data _i_, and the outside sum is over the different stages where we have data. We use MultiStart to generate starting points and fmincon attempts to find a minimizer from each of the starting points.
 
 There are four main sections of the code:
 
@@ -94,7 +94,7 @@ There are four main sections of the code:
     * Using the results found and saved above, we then solve the model using the best parameter values found, and plot the results.
 
 3. Objective function value function
-    * We solve the model and calculate and return the objective function value for a given set of parameter values $z$. The values of $z$ are determined by MultiStart and fmincon.
+    * We solve the model and calculate and return the objective function value for a given set of parameter values _z_. The values of _z_ are determined by MultiStart and fmincon.
 
 4. Model
     * We use a function for each system of ordinary differential equations in our model and call these functions in sections 2 and 3 when we are solving our systems.
