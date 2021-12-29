@@ -17,32 +17,32 @@ The models and data here are presented in a doctoral dissertation from the Unive
 
 ## Authors
 
-Hannah M. Thompson [0000-0001-8316-3232](https://orcid.org/0000-0001-8316-3232)\
+Hannah M. Thompson [0000-0001-8316-3232](https://orcid.org/0000-0001-8316-3232)
 University of Tennessee – Knoxville, Department of Mathematics
 
-Thomas J. McAvoy [0000-0003-1157-9399](https://orcid.org/0000-0003-1157-9399) \
+Thomas J. McAvoy [0000-0003-1157-9399](https://orcid.org/0000-0003-1157-9399)
 Virginia Polytechnic Institute and State University, Department of Entomology
 
-Scott M. Salom [0000-0002-8950-3442](https://orcid.org/0000-0002-8950-3442) \
+Scott M. Salom [0000-0002-8950-3442](https://orcid.org/0000-0002-8950-3442)
 Virginia Polytechnic Institute and State University, Department of Entomology
 
-Gregory J. Wiggins [0000-0002-0876-3366](https://orcid.org/0000-0002-0876-3366) \
+Gregory J. Wiggins [0000-0002-0876-3366](https://orcid.org/0000-0002-0876-3366)
 North Carolina Department of Agriculture and Consumer Services, Plant Industry Division
 
-Suzanne Lenhart [0000-0002-6898-5796](https://orcid.org/0000-0002-6898-5796) \
+Suzanne Lenhart [0000-0002-6898-5796](https://orcid.org/0000-0002-6898-5796)
 University of Tennessee – Knoxville, Department of Mathematics
 
 ## Description
 
-_Adelges tsugae_ have spread into more than half of the native range of _T. canadensis_ in the eastern US since their introduction prior to 1951. An _A. tsugae_ infestation can result in _T. canadensis_ death within years, and this damage and mortality has caused significant changes in hemlock forests. We developed two models composed of systems of ordinary differential equations with time dependent parameters to represent seasonality. \
+_Adelges tsugae_ have spread into more than half of the native range of _T. canadensis_ in the eastern US since their introduction prior to 1951. An _A. tsugae_ infestation can result in _T. canadensis_ death within years, and this damage and mortality has caused significant changes in hemlock forests. We developed two models composed of systems of ordinary differential equations with time dependent parameters to represent seasonality.
 
-The first model (Hemlock-Adelgid model) represents the coupled cycles in _T. canadensis_ health and _A. tsugae_ density.  We use field data from Virginia to develop the model and to perform parameter estimation. The mechanisms we represent in the model, including an _A. tsugae_ density dependent _T. canadensis_ growth rate, a _T. canadensis_ health dependent _A. tsugae_ mortality rate and a density dependent _A. tsugae_ mortality rate, produce the cycles in _T. canadensis_ health and _A. tsugae_ density commonly seen with the _A. tsugae_ system in the eastern United States. We test sets of initial conditions to determine scenarios that will likely lead to _T. canadensis_ mortality and explore the long-term dynamics of the system. \
+The first model (Hemlock-Adelgid model) represents the coupled cycles in _T. canadensis_ health and _A. tsugae_ density.  We use field data from Virginia to develop the model and to perform parameter estimation. The mechanisms we represent in the model, including an _A. tsugae_ density dependent _T. canadensis_ growth rate, a _T. canadensis_ health dependent _A. tsugae_ mortality rate and a density dependent _A. tsugae_ mortality rate, produce the cycles in _T. canadensis_ health and _A. tsugae_ density commonly seen with the _A. tsugae_ system in the eastern United States. We test sets of initial conditions to determine scenarios that will likely lead to _T. canadensis_ mortality and explore the long-term dynamics of the system.
 
-The second model (Adelgid-Predator model) represents the population dynamics of _A. tsugae_ and two introduced biological control organisms, _L. nigrinus_ and _S. tsugae_, released to attempt to control _A. tsugae_ populations and allow _T. canadensis_ survival. We use field data from the Great Smoky Mountains National Park to develop the model and to perform parameter estimation. The model is stage structured, with two classes per species. To represent the seasonality of the system, in addition to time dependent parameters, the model is composed of multiple systems of ordinary differential equations that control the system at different times of the year. We explore the dynamics of the model by running simulations with species absent from the system, and by varying the fixed parameter representing _T. canadensis_ health. \
+The second model (Adelgid-Predator model) represents the population dynamics of _A. tsugae_ and two introduced biological control organisms, _L. nigrinus_ and _S. tsugae_, released to attempt to control _A. tsugae_ populations and allow _T. canadensis_ survival. We use field data from the Great Smoky Mountains National Park to develop the model and to perform parameter estimation. The model is stage structured, with two classes per species. To represent the seasonality of the system, in addition to time dependent parameters, the model is composed of multiple systems of ordinary differential equations that control the system at different times of the year. We explore the dynamics of the model by running simulations with species absent from the system, and by varying the fixed parameter representing _T. canadensis_ health.
 
-The data used to develop and perform parameter estimation on the Hemlock-Adelgid Model are from a study led by McAvoy, on the impact of chemical control on _A. tsugae_ and the health of _T. canadensis_, which recorded _T. canadensis_ canopy characteristics and _A. tsugae_ densities at a field site in Mountain Lake, Virginia from 2001 to 2015. A preliminary report of the study was presented in 2005.[^1] `ha_data.xlsx` contains the data from that study that were used in this modeling work. \
+The data used to develop and perform parameter estimation on the Hemlock-Adelgid Model are from a study led by McAvoy, on the impact of chemical control on _A. tsugae_ and the health of _T. canadensis_, which recorded _T. canadensis_ canopy characteristics and _A. tsugae_ densities at a field site in Mountain Lake, Virginia from 2001 to 2015. A preliminary report of the study was presented in 2005.[^1] `ha_data.xlsx` contains the data from that study that were used in this modeling work.
 
-The data used for development and parameter estimation for the Adelgid-Predator model are from a study led by Wiggins and were collected near Elkmont Campground in the Great Smoky Mountains National Park from 2010-2013. The number of larval and adult _L. nigrinus_ and _S. tsugae_ collected through beat sheet sampling were recorded. Part of the study assessed the use of emergence traps, which collect adult _L. nigrinus_ as they emerge from the soil where pupation and aestivation takes place.[^2] `als_data.xlsx` contains the data used in this modeling work. \
+The data used for development and parameter estimation for the Adelgid-Predator model are from a study led by Wiggins and were collected near Elkmont Campground in the Great Smoky Mountains National Park from 2010-2013. The number of larval and adult _L. nigrinus_ and _S. tsugae_ collected through beat sheet sampling were recorded. Part of the study assessed the use of emergence traps, which collect adult _L. nigrinus_ as they emerge from the soil where pupation and aestivation takes place.[^2] `als_data.xlsx` contains the data used in this modeling work.
 
 ## Repository Organization 
 
@@ -79,25 +79,25 @@ We construct a constrained optimization problem where we minimize an objective f
 
 There are four main sections of the code:
 
-1. Optimization problem \
-    * We estimate the values of parameters and initial conditions by solving the optimization problem of minimizing the objective function value. To do this we: \
-        * save the upper and lower bounds for each parameter we are estimating as a vector, \
-        * create the optimization problem, specifying: \
-            * fmincon as the solver, \
-            * the function we create in section 3 that returns the objective function value, \
-            * the upper and lower bounds for the parameters, \
-    * create MultiStart object to run the fmincon solver repeatedly to find multiple local minima of the objective function value, \
-    * specify the number of start points, \
-    * run the problem and save the results. \
+1. Optimization problem
+    * We estimate the values of parameters and initial conditions by solving the optimization problem of minimizing the objective function value. To do this we:
+        * save the upper and lower bounds for each parameter we are estimating as a vector,
+        * create the optimization problem, specifying:
+            * fmincon as the solver,
+            * the function we create in section 3 that returns the objective function value,
+            * the upper and lower bounds for the parameters,
+    * create MultiStart object to run the fmincon solver repeatedly to find multiple local minima of the objective function value,
+    * specify the number of start points,
+    * run the problem and save the results.
     
-2. Model solution with optimal parameter values found \
-    * Using the results found and saved above, we then solve the model using the best parameter values found, and plot the results. \ 
+2. Model solution with optimal parameter values found
+    * Using the results found and saved above, we then solve the model using the best parameter values found, and plot the results.
 
-3. Objective function value function \
-    * We solve the model and calculate and return the objective function value for a given set of parameter values $z$. The values of $z$ are determined by MultiStart and fmincon. \
+3. Objective function value function
+    * We solve the model and calculate and return the objective function value for a given set of parameter values $z$. The values of $z$ are determined by MultiStart and fmincon.
 
-4. Model \
-    * We use a function for each system of ordinary differential equations in our model and call these functions in sections 2 and 3 when we are solving our systems. \
+4. Model
+    * We use a function for each system of ordinary differential equations in our model and call these functions in sections 2 and 3 when we are solving our systems.
 
 We can test the code by using test data. We simulate the test data by choosing values for all parameters and solving the model. The test data is the state function values at some time points. We use the same time points where we have real data. Using this test data, run the parameter estimation. The optimal parameter values found should agree with the parameter values used to simulate the test data.
 
