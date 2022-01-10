@@ -12,25 +12,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % controls steepness of transition from positive to negative tips alive growth
-b_1 = 9.997352068687140000;
+b_1 = 9.99735206868714;
 % controls threshold of between positive and negative tips alive growth
-b_2 = 2.426159708413950000;
+b_2 = 2.42615970841395;
 % related to threshold and symmetry of recovery and decay
-l = 0.091471924012962100;
+l = 0.0914719240129621;
 % tips alive growth rate (value relative to l controls symmetry of recovery and decay)
-g_h = 0.149997195475215000;
+g_h = 0.149997195475215;
 % adelgid growth rate
-g_a = 0.270000000000000000;
+g_a = 0.27;
 % adelgid death rate due to sexuparae
-m_s = 0.039882021789114700;
+m_s = 0.0398820217891147;
 % background per capita adelgid death rate 
 m_a = 0.000500968789316318;
 % winter per capita adelgid death rate
-m_aw = 0.001002748119207160;
+m_aw = 0.00100274811920716;
 % summer per capita adelgid death rate
-m_as = 0.041234488828250100;
+m_as = 0.0412344888282501;
 % tips alive carrying capacity
-k = 0.878886383803129000;
+k = 0.878886383803129;
 
 % create vector of parameters
 %       1    2    3  4    5    6    7     8     9    10   
@@ -82,7 +82,7 @@ for i = 1 : end_t_year
     % solve system 1 and store results 
     [s_1, y_1] = ode45(@(s_1, y_1)hwaode_HA_tipsalive_1(s_1, y_1, pars), t_1, init_1);
     
-    %set initial conditions for next system 
+    % set initial conditions for next system 
     init_2 = [y_1(length(t_1), 1); y_1(length(t_1), 2)];
     
     % store results in full model run solution matrix
@@ -243,60 +243,60 @@ ylabel('A. tsugae density (per cm)', 'FontSize', 16)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Model
 % Create a function for each system of ordinary differential
-% equations in the model. These functions are called when
-% solving the model.
+% equations in the model. 
+% These functions are called when solving the model.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function m = hwaode_HA_tipsalive_1(t,  A,  pars)
+function m = hwaode_HA_tipsalive_1(t, A, pars)
 
     m = zeros(2, 1);
     
-    % dH/dt= g_h     (-1  / (1 + e^{ -b_1      (A     - b_2)}      +  l)         H      (1 - H     / k)
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1      (A     - b_2)}      +  l)         H     (1 - H     / k)
     m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
-    % dA/dt= g_a     A    - m_a       A     / H
+ % dA/dt = g_a       A    - m_a       A     / H
     m(2) = pars(5) * A(2) - pars(6) * A(2) ./ A(1);
 
 end
 
-function m = hwaode_HA_tipsalive_2(t,  A,  pars)
+function m = hwaode_HA_tipsalive_2(t, A, pars)
     
     m = zeros(2, 1);
     
-    % dH/dt= g_h     (-1  / (1 + e^{ -b_1       (A    - b_2)}      +  l)         H     (1 - H     / k)
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1       (A    - b_2)}      +  l)        H      (1 - H     / k)
     m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
-    % dA/dt= - m_a       A  / H
+ % dA/dt = - m_a      A     / H
     m(2) = -pars(6) * A(2) ./ A(1);
 
 end
 
-function m = hwaode_HA_tipsalive_3(t,  A,  pars)
+function m = hwaode_HA_tipsalive_3(t, A, pars)
 
     m = zeros(2, 1);
  
-    % dH/dt= g_h     (-1  / (1 + e^{  -b_1        (A    - b_2)}      +  l)        H      (1 - H     / k)
+ % dH/dt = g_h       (-1  / (1 + e^{  -b_1        (A    - b_2)}      +  l)        H      (1 - H     / k)
     m(1) = pars(4) * (-1 ./ (1 + exp( - pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
-    % dA/dt= - m_a    A     / H    - m_s       A^2
+ % dA/dt = - m_a      A     / H    - m_s       A^2
     m(2) = -pars(6) * A(2) ./ A(1) - pars(9) * A(2)^2;
 
 end
 
-function m = hwaode_HA_tipsalive_6(t,  A,  pars,  hem_6)
+function m = hwaode_HA_tipsalive_6(t, A, pars, hem_6)
 
     m = zeros(1, 1);
     
-    %dH/dt=0
-    %dA/dt=-m_as      A    / H
+ % dH/dt = 0
+ % dA/dt = - m_as     A    / H
     m(1) = -pars(8) * A(1) / hem_6;
 
 end
 
-function m = hwaode_HA_tipsalive_8(t,  A,  pars)
+function m = hwaode_HA_tipsalive_8(t, A, pars)
 
     m = zeros(2, 1);
    
-    % dH/dt= g_h     (-1  / (1 + e^{ -b_1       (A    - b_2)}      +  l)        H      (1 - H     / k)
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1       (A    - b_2)}      + l)         H      (1 - H     / k)
     m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
-    %dA/dt=-m_aw      A     / H
+ % dA/dt = - m_aw     A     / H
     m(2) = -pars(7) * A(2) ./ A(1);
 
 end

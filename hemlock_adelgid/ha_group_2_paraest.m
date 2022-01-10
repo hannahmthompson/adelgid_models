@@ -25,8 +25,7 @@ upper_bounds = [10    8     1     0.15    0.6    4      0.2     0.3    0.3    0.
 num_start_points = 10; 
 
 % set one starting point
-x_start = [9  0.25  0.12  0.13  0.59  0.08  0.06  0.07  0.002  0.92];
-% x_start = 0.5 * (lower_bounds + upper_bounds);
+x_start = 0.1 * (lower_bounds + upper_bounds);
 
 % create optimization problem structure and set options
 problem = createOptimProblem('fmincon', 'objective', @HA_tipsalive_10system, 'x0', x_start, 'lb', lower_bounds, 'ub', upper_bounds);
@@ -46,6 +45,15 @@ mult_start = MultiStart('Display', 'iter');
 % if using parallel computing:
 % delete(gcp)
 
+% initialize matrix of results from all starting points
+r = size(solutions);
+results = zeros(r(1, 2),  length(upper_bounds) + 3);
+
+% save results- exit flag, first order optimality, objective function value, parameter values
+for i = 1 : r(1, 2)
+   results(i, :) = [solutions(1,  i).Exitflag,  solutions(1,  i).Output.bestfeasible.firstorderopt,  solutions(1, i).Fval solutions(1, i).X];
+end
+
 % displaying result- x contains the parameter values, 
 % yval is the ojective function vlaue
 x
@@ -56,6 +64,7 @@ yval
 % choices found 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% assign entries of x to corresponding parameters
 % controls steepness of transition from positive to negative tips alive growth
 b_1 = x(1);
 % controls threshold of between positive and negative tips alive growth
@@ -149,10 +158,10 @@ for i = 1 : end_t_year
     % system 3
     [s_3, y_3] = ode45(@(s_3, y_3)hwaode_HA_tipsalive_6(s_3, y_3, pars, hem_3), t_3, init_3);
     
-    init_4 = [hem_3;y_3(length(t_3), 1)];
+    init_4 = [hem_3; y_3(length(t_3), 1)];
     
     for j = 1 : (length(t_3) - 1)
-        model_sol((i - 1) * 104 + j + 4, :) = [hem_3;y_3(j, :)];
+        model_sol((i - 1) * 104 + j + 4, :) = [hem_3; y_3(j, :)];
     end
     
     % system 4
@@ -228,6 +237,7 @@ h_final = model_sol(:, 1);
 a_final = model_sol(:, 2);
 
 % Group II data
+% time in calendar weeks
 time_entries_a_data = [116	129	164	181	216	234	277	286	324	338	376	390]';
 a_data = [0.049074074	0	0.028703704	0.092592593	0.16875	0.021875	0	0.027083333	0.09375	0.014583333	0.05625	0.735416667];
 time_entries_h_data = [116	164	181	234	286	338	390	727]';
@@ -238,7 +248,7 @@ h_data = [0.288888889	0.213333333	0.405555556	0.65	0.63125	0.6125	0.55	0.4375];
 % code- ha_group_1_paraest.m
 
 % to test that model solution here matches model solution in 
-% calculation of objective function value function
+% calculation of objective function value function,
 % calculate objective function value here
 a_diff = zeros(length(a_data), 1);
 h_diff = zeros(length(h_data), 1);
@@ -254,15 +264,6 @@ end
 % calculate and output objective function value
 norm(h_diff) / norm(h_data) + norm(a_diff) / norm(a_data)
 
-% initialize matrix of results from all starting points
-r = size(solutions);
-results = zeros(r(1, 2),  length(upper_bounds) + 3);
-
-% save results- exit flag, first order optimality, objective function value, parameter values
-for i = 1 : r(1, 2)
-   results(i, :) = [solutions(1,  i).Exitflag,  solutions(1,  i).Output.bestfeasible.firstorderopt,  solutions(1, i).Fval solutions(1, i).X];
-end
-
 % plot results
 figure() 
 
@@ -271,6 +272,7 @@ hold on
 ax = gca;
 ax.FontSize = 16;
 % tips alive in green
+% model results in solid line, data as diamonds
 plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, 0.5], 'LineWidth', 3);
 plot((time_entries_h_data - 79) ./ 52, h_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.7, 0.6], 'MarkerFaceColor', [0, 0.7, 0.6])
 xlabel('Time (years)', 'FontSize', 16)
@@ -281,6 +283,7 @@ hold on
 ax = gca;
 ax.FontSize = 16;
 % adelgid density in black
+% model results in solid line, data as diamonds
 plot(t_full ./ 52, a_final, 'k-', 'LineWidth', 3);
 plot((time_entries_a_data - 79) ./ 52, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.1, 0.1, 0.1], 'MarkerFaceColor', [0.1, 0.1, 0.1])
 xlabel('Time (years)', 'FontSize', 16)
@@ -328,7 +331,7 @@ function value = HA_tipsalive_10system(z)
 
     model_sol = zeros(104 * end_t_year + 1, 2);
  
-    for i = 1:end_t_year
+    for i = 1 : end_t_year
     
         y_1 = zeros(length(t_1), 2);
         y_2 = zeros(length(t_2), 2);
@@ -360,10 +363,10 @@ function value = HA_tipsalive_10system(z)
         
         [s_3, y_3] = ode45(@(s_3, y_3)hwaode_HA_tipsalive_6(s_3, y_3, pars, hem_3), t_3, init_3);
         
-        init_4 = [hem_3;y_3(length(t_3), 1)];
+        init_4 = [hem_3; y_3(length(t_3), 1)];
         
         for j = 1 : (length(t_3) - 1)
-            model_sol((i - 1) * 104 + j + 4, :) = [hem_3;y_3(j, :)];
+            model_sol((i - 1) * 104 + j + 4, :) = [hem_3; y_3(j, :)];
         end   
         
         [s_4, y_4] = ode45(@(s_4, y_4)hwaode_HA_tipsalive_2(s_4, y_4, pars), t_4, init_4);
@@ -432,6 +435,8 @@ function value = HA_tipsalive_10system(z)
     % reset objective function value
     value = 0;
     
+    % if testing- replace data with test data here too
+    % Group II data
     time_entries_a_data = [116	129	164	181	216	234	277	286	324	338	376	390]';
     a_data = [0.049074074	0	0.028703704	0.092592593	0.16875	0.021875	0	0.027083333	0.09375	0.014583333	0.05625	0.735416667];
     time_entries_h_data = [116	164	181	234	286	338	390	727]';
@@ -456,26 +461,25 @@ function value = HA_tipsalive_10system(z)
     value = norm(h_diff) / norm(h_data) + norm(a_diff) / norm(a_data);
     
     if isnan(value)
-        value = 0
+        value = 0;
     end
-
 
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Model
 % Create a function for each system of ordinary differential
-% equations in the model. These functions are called when
-% solving the model.
+% equations in the model. 
+% These functions are called when solving the model.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function m = hwaode_HA_tipsalive_1(t, A, pars)
 
     m = zeros(2, 1);
     
-    % dH/dt= g_h     (-1  / (1 + e^{ -b_1      (A     - b_2)}      +  l)         H      (1 - H     / k)
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1      (A     - b_2)}      +  l)         H     (1 - H     / k)
     m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
-    % dA/dt= g_a     A    - m_a       A     / H
+ % dA/dt = g_a       A    - m_a       A     / H
     m(2) = pars(5) * A(2) - pars(6) * A(2) ./ A(1);
 
 end
@@ -484,9 +488,9 @@ function m = hwaode_HA_tipsalive_2(t, A, pars)
     
     m = zeros(2, 1);
     
-    % dH/dt= g_h     (-1  / (1 + e^{ -b_1       (A    - b_2)}      +  l)         H     (1 - H     / k)
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1       (A    - b_2)}      +  l)        H      (1 - H     / k)
     m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
-    % dA/dt= - m_a       A  / H
+ % dA/dt = - m_a      A     / H
     m(2) = -pars(6) * A(2) ./ A(1);
 
 end
@@ -495,9 +499,9 @@ function m = hwaode_HA_tipsalive_3(t, A, pars)
 
     m = zeros(2, 1);
  
-    % dH/dt= g_h     (-1  / (1 + e^{  -b_1        (A    - b_2)}      +  l)        H      (1 - H     / k)
+ % dH/dt = g_h       (-1  / (1 + e^{  -b_1        (A    - b_2)}      +  l)        H      (1 - H     / k)
     m(1) = pars(4) * (-1 ./ (1 + exp( - pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
-    % dA/dt= - m_a    A     / H    - m_s       A^2
+ % dA/dt = - m_a      A     / H    - m_s       A^2
     m(2) = -pars(6) * A(2) ./ A(1) - pars(9) * A(2)^2;
 
 end
@@ -506,8 +510,8 @@ function m = hwaode_HA_tipsalive_6(t, A, pars, hem_6)
 
     m = zeros(1, 1);
     
-    %dH/dt=0
-    %dA/dt=-m_as      A    / H
+ % dH/dt = 0
+ % dA/dt = - m_as     A    / H
     m(1) = -pars(8) * A(1) / hem_6;
 
 end
@@ -516,9 +520,9 @@ function m = hwaode_HA_tipsalive_8(t, A, pars)
 
     m = zeros(2, 1);
    
-    % dH/dt= g_h     (-1  / (1 + e^{ -b_1       (A    - b_2)}      +  l)        H      (1 - H     / k)
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1       (A    - b_2)}      + l)         H      (1 - H     / k)
     m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
-    %dA/dt=-m_aw      A     / H
+ % dA/dt = - m_aw     A     / H
     m(2) = -pars(7) * A(2) ./ A(1);
 
 end

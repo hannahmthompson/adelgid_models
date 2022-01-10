@@ -284,49 +284,63 @@ for q=1:length(init_test)
     
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Model
+% Create a function for each system of ordinary differential
+% equations in the model. 
+% These functions are called when solving the model.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+function m = hwaode_HA_tipsalive_1(t, A, pars)
 
-function m=hwaode_HA_tipsalive_1(t, A, pars)
-
-m=zeros(2,1);
-
-m(1)=pars(4)*(-1./(1+exp(-pars(1)*(A(2)-pars(2))))+pars(3))*A(1)*(1-A(1)./pars(10)); %hemlock health
-m(2)=pars(5)*A(2)-pars(6)*A(2)./A(1); %adelgid density
-
-end
-
-function m=hwaode_HA_tipsalive_2(t, A, pars)
-
-m=zeros(2,1);
-
-m(1)=pars(4)*(-1./(1+exp(-pars(1)*(A(2)-pars(2))))+pars(3))*A(1)*(1-A(1)./pars(10)); %hemlock health
-m(2)=-pars(6)*A(2)./A(1); %adelgid density
+    m = zeros(2, 1);
+    
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1      (A     - b_2)}      +  l)         H     (1 - H     / k)
+    m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
+ % dA/dt = g_a       A    - m_a       A     / H
+    m(2) = pars(5) * A(2) - pars(6) * A(2) ./ A(1);
 
 end
 
-function m=hwaode_HA_tipsalive_3(t, A, pars)
-
-m=zeros(2,1);
-
-m(1)=pars(4)*(-1./(1+exp(-pars(1)*(A(2)-pars(2))))+pars(3))*A(1)*(1-A(1)./pars(10)); %hemlock health
-m(2)=-pars(6)*A(2)./A(1)-pars(9)*A(2)^2; %adelgid density
-
-end
-
-function m=hwaode_HA_tipsalive_6(t, A, pars, hem_6)
-
-m=zeros(1,1);
-
-%m(1)=0; %hemlock health
-m(1)=-pars(8)*A(1)/hem_6; %adelgid density
+function m = hwaode_HA_tipsalive_2(t, A, pars)
+    
+    m = zeros(2, 1);
+    
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1       (A    - b_2)}      +  l)        H      (1 - H     / k)
+    m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
+ % dA/dt = - m_a      A     / H
+    m(2) = -pars(6) * A(2) ./ A(1);
 
 end
 
-function m=hwaode_HA_tipsalive_8(t, A, pars)
+function m = hwaode_HA_tipsalive_3(t, A, pars)
 
-m=zeros(2,1);
+    m = zeros(2, 1);
+ 
+ % dH/dt = g_h       (-1  / (1 + e^{  -b_1        (A    - b_2)}      +  l)        H      (1 - H     / k)
+    m(1) = pars(4) * (-1 ./ (1 + exp( - pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
+ % dA/dt = - m_a      A     / H    - m_s       A^2
+    m(2) = -pars(6) * A(2) ./ A(1) - pars(9) * A(2)^2;
 
-m(1)=pars(4)*(-1./(1+exp(-pars(1)*(A(2)-pars(2))))+pars(3))*A(1)*(1-A(1)./pars(10)); %hemlock health
-m(2)=-pars(7)*A(2)./A(1); %adelgid density
+end
+
+function m = hwaode_HA_tipsalive_6(t, A, pars, hem_6)
+
+    m = zeros(1, 1);
+    
+ % dH/dt = 0
+ % dA/dt = - m_as     A    / H
+    m(1) = -pars(8) * A(1) / hem_6;
+
+end
+
+function m = hwaode_HA_tipsalive_8(t, A, pars)
+
+    m = zeros(2, 1);
+   
+ % dH/dt = g_h       (-1  / (1 + e^{ -b_1       (A    - b_2)}      + l)         H      (1 - H     / k)
+    m(1) = pars(4) * (-1 ./ (1 + exp(-pars(1) * (A(2) - pars(2)))) + pars(3)) * A(1) * (1 - A(1) ./ pars(10));
+ % dA/dt = - m_aw     A     / H
+    m(2) = -pars(7) * A(2) ./ A(1);
 
 end
