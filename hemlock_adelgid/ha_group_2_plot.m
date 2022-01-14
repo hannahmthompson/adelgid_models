@@ -181,7 +181,7 @@ model_sol(104 * end_t_year + 1, :) = y_10(length(t_10), :);
 h_final = model_sol(:, 1);
 a_final = model_sol(:, 2);
 
-%group II data
+% Group II data
 time_entries_a_data = [116	129	164	181	216	234	277	286	324	338	376	390]';
 a_data = [0.049074074	0	0.028703704	0.092592593	0.16875	0.021875	0	0.027083333	0.09375	0.014583333	0.05625	0.735416667];
 time_entries_h_data = [116	164	181	234	286	338	390	727]';
