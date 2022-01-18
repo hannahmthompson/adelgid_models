@@ -22,7 +22,7 @@ lower_bounds = [0.01  0.01  0.01  0.0001  0.001  0.005  0.0005  0.001  0.001  0.
 upper_bounds = [10    8     1     0.15    0.6    4      0.2     0.3    0.3    0.95];
 
 % number of starting points k
-num_start_points = 10; 
+num_start_points = 1; 
 
 % set one starting point
 x_start = 0.1 * (lower_bounds + upper_bounds);
@@ -115,7 +115,7 @@ a_0 = 2.481481481;
 init_1 = [h_0; a_0];
 
 % initalize matrix to store full model run solutions
-model_sol = zeros(104 * end_t_year, 2);
+model_sol = zeros(104 * end_t_year + 1, 2);
 
 % yearly loop
 for i = 1 : end_t_year
@@ -273,9 +273,9 @@ ax = gca;
 ax.FontSize = 16;
 % tips alive in green
 % model results in solid line, data as diamonds
-plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, 0.5], 'LineWidth', 3);
+plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, 0.5], 'LineWidth', 3)
 plot((time_entries_h_data - 79) ./ 52, h_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.7, 0.6], 'MarkerFaceColor', [0, 0.7, 0.6])
-xlabel('Time (years)', 'FontSize', 16)
+xlabel('Time (years) starting week 27 (July)', 'FontSize', 16)
 ylabel('Proportion tips alive', 'FontSize', 16)
 
 subplot(2, 1, 2)
@@ -284,9 +284,9 @@ ax = gca;
 ax.FontSize = 16;
 % adelgid density in black
 % model results in solid line, data as diamonds
-plot(t_full ./ 52, a_final, 'k-', 'LineWidth', 3);
+plot(t_full ./ 52, a_final, 'k-', 'LineWidth', 3)
 plot((time_entries_a_data - 79) ./ 52, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.1, 0.1, 0.1], 'MarkerFaceColor', [0.1, 0.1, 0.1])
-xlabel('Time (years)', 'FontSize', 16)
+xlabel('Time (years) starting week 27 (July)', 'FontSize', 16)
 ylabel('A. tsugae density (per cm)', 'FontSize', 16)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

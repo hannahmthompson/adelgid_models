@@ -12,25 +12,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % controls steepness of transition from positive to negative tips alive growth
-b_1 = 9.99990579056676;
+b_1 = 9.9999;
 % controls threshold of between positive and negative tips alive growth
-b_2 = 0.361670632306041;
+b_2 = 0.3617;
 % related to threshold and symmetry of recovery and decay
-l = 0.134569919719798;
+l = 0.1346;
 % tips alive growth rate (value relative to l controls symmetry of recovery and decay)
-g_h = 0.149999344951254;
+g_h = 0.1500;
 % adelgid growth rate
-g_a = 0.599999043373467;
+g_a = 0.6000;
 % adelgid death rate due to sexuparae
-m_s = 0.0803232672766343;
+m_s = 0.0803;
 % background per capita adelgid death rate 
-m_a = 0.0613377743492327;
+m_a = 0.0613;
 % winter per capita adelgid death rate
-m_aw = 0.0738985065226915;
+m_aw = 0.0739;
 % summer per capita adelgid death rate
-m_as = 0.001000503191688;
+m_as = 0.0010;
 % tips alive carrying capacity
-k = 0.939770523587495;
+k = 0.9398;
 
 % create vector of parameters
 %       1    2    3  4    5    6    7     8     9    10   
@@ -61,7 +61,7 @@ a_0 = 2.481481481;
 init_1 = [h_0; a_0];
 
 % initalize matrix to store full model run solutions
-model_sol = zeros(104 * end_t_year,2);
+model_sol = zeros(104 * end_t_year + 1, 2);
 
 % yearly loop
 for i = 1 : end_t_year
@@ -182,10 +182,10 @@ h_final = model_sol(:, 1);
 a_final = model_sol(:, 2);
 
 % Group II data
-time_entries_a_data = [116	129	164	181	216	234	277	286	324	338	376	390]';
-a_data = [0.049074074	0	0.028703704	0.092592593	0.16875	0.021875	0	0.027083333	0.09375	0.014583333	0.05625	0.735416667];
-time_entries_h_data = [116	164	181	234	286	338	390	727]';
-h_data = [0.288888889	0.213333333	0.405555556	0.65	0.63125	0.6125	0.55	0.4375];
+time_entries_a_data = [79 116	129	164	181	216	234	277	286	324	338	376	390]';
+a_data = [2.481481481 0.049074074	0	0.028703704	0.092592593	0.16875	0.021875	0	0.027083333	0.09375	0.014583333	0.05625	0.735416667];
+time_entries_h_data = [79 116	164	181	234	286	338	390	727]';
+h_data = [0.661111111 0.288888889	0.213333333	0.405555556	0.65	0.63125	0.6125	0.55	0.4375];
 
 a_diff = zeros(length(a_data), 1);
 h_diff = zeros(length(h_data), 1);
@@ -199,7 +199,11 @@ for j = 1 : length(h_data)
 end
 
 % calculate and output objective function value
-value = norm(h_diff) / norm(h_data) + norm(a_diff) / norm(a_data)
+% we exclude the first data entry from the calculation
+% of the objective function value as it is used as the
+% initial condition (first entry in h_diff and a_diff
+% is 0, so does not need to be excluded from calculation)
+value = norm(h_diff) / norm(h_data(2 : end)) + norm(a_diff) / norm(a_data(2 : end))
 
 % plot results
 figure() 
@@ -209,9 +213,10 @@ hold on
 ax = gca;
 ax.FontSize = 16;
 % tips alive in green
+% model results in solid line, data as diamonds
 plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, .5], 'LineWidth', 3);
 plot((time_entries_h_data - 79) ./ 52, h_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.7, .6], 'MarkerFaceColor', [0, 0.7, .6])
-xlabel('Time (years)', 'FontSize', 16)
+xlabel('Time (years) starting week 27 (July)', 'FontSize', 16)
 ylabel('Proportion tips alive', 'FontSize', 16)
 
 subplot(2, 1, 2)
@@ -219,9 +224,10 @@ hold on
 ax = gca;
 ax.FontSize = 16;
 % adelgid density in black
+% model results in solid line, data as diamonds
 plot(t_full ./ 52, a_final, 'k-', 'LineWidth', 3);
 plot((time_entries_a_data - 79) ./ 52, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [.1, 0.1, .1], 'MarkerFaceColor', [.1, 0.1, .1])
-xlabel('Time (years)', 'FontSize', 16)
+xlabel('Time (years) starting week 27 (July)', 'FontSize', 16)
 ylabel('A. tsugae density (per cm)', 'FontSize', 16)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

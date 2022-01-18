@@ -115,7 +115,7 @@ a_0 = 2.844166667;
 init_1 = [h_0; a_0]; 
 
 % initalize matrix to store full model run solutions
-model_sol = zeros(104 * end_t_year, 2);
+model_sol = zeros(104 * end_t_year + 1, 2);
 
 % yearly loop
 for i = 1 : end_t_year
@@ -245,8 +245,11 @@ h_data = [0.54	0.57	0.117	0.202	0.12	0.525	0.55	0.525	0.55	0.575];
 
 % test data- same time points as group 1 data
 % comment out either real data or this test data
-% estimated parameter should agree with parameters
-% used to generate test data:
+
+% test- estimated parameter should agree with parameters
+% used to generate test data.
+
+% pars value used to generate test data:
 % [5.6 0.13 0.53 0.11 0.4 0.071 0.0005 0.05 0.05 0.9]
 % a_data = [1.51787754722614 2.95828807074122 0.0736788762675378 0.329409756029034 0.00659696162793616 0.0157221343699808 0.00163464685975224 0.0168772199769714 0.0129197552243110 0.0283872307099463 0.0119080488438500 0.176290302258266 0.0586720244564968 0.526021161227084];
 % h_data = [0.540505188299063 0.339935316522196 0.251571515875157 0.248795645473372 0.343073352151633 0.527374975741411 0.678578768417368 0.768655293520170 0.757395091245183 0.654430982698062];
@@ -276,10 +279,10 @@ hold on
 ax = gca;
 ax.FontSize = 16;
 % tips alive in green
-% model results in solid line, data as diamonds
-plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, 0.5], 'LineWidth', 3);
+% model results as solid line, data as diamonds
+plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, 0.5], 'LineWidth', 3)
 plot((time_entries_h_data - 15) ./ 52, h_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.7, 0.6], 'MarkerFaceColor', [0, 0.7, 0.6])
-xlabel('Time (years)', 'FontSize', 16)
+xlabel('Time (years) starting week 15 (April)', 'FontSize', 16)
 ylabel('Proportion tips alive', 'FontSize', 16)
 
 subplot(2, 1, 2)
@@ -287,10 +290,10 @@ hold on
 ax = gca;
 ax.FontSize = 16;
 % adelgid density in black
-% model results in solid line, data as diamonds
-plot(t_full ./ 52, a_final, 'k-', 'LineWidth',  3);
+% model results as solid line, data as diamonds
+plot(t_full ./ 52, a_final, 'k-', 'LineWidth',  3)
 plot((time_entries_a_data - 15) ./ 52, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.1, 0.1, 0.1], 'MarkerFaceColor', [0.1, 0.1, 0.1])
-xlabel('Time (years)', 'FontSize', 16)
+xlabel('Time (years) starting week 15 (April)', 'FontSize', 16)
 ylabel('A. tsugae density (per cm)', 'FontSize', 16)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
