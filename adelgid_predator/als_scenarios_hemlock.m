@@ -99,13 +99,6 @@ for Hset=[0.45 0.65 0.8 0.95]
     % total time points in full run of model
     t_full = linspace(0, end_t_year * 52, end_t_year * 104 + 1);
     
-    % initial conditions
-    a_0 = x(9); 
-    la_0 = 3; %from data
-    sa_0 = x(8);
-    % create a vector of initial conditions
-    init_1 = [a_0; la_0; sa_0]; 
-    
     % saving space for whole run of state values
     model_sol = zeros(104 * end_t_year + 1, 6);
        
