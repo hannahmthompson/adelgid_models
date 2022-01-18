@@ -2,3 +2,5 @@
 *.Rhistory
 *.Rapp.history
 *.RData
+*.csv
+*.tif
