@@ -51,17 +51,17 @@ t_full = linspace(0, end_t_year * 52, end_t_year * 104 + 1);
 % for all scenarios (total of 1296 scenarios tested)
 all_model_sol = zeros(104 * end_t_year + 1, 2 * 1296);
 
-% save scenario results
-% in matrices where rows correspond to A(0) values, from 0 to 
-% 8 hwa/cm in increments of 0.1, and columns correspond to 
-% H(0) values, from 0.15 to 0.90 proportion tips alive in 
-% increments of 0.05
+% save scenario results in matrices where each row
+% represents one of 1215 scenario: 
+% A(0) values from 0 to 8 hwa/cm in increments of 0.1
+% H(0) values from 0.15 to 0.90 proportion tips alive
+% in increments of 0.05
 % if model results reach 0.1 proportion tips alive
 % (I) 1 will replace 0 for that entry in deadorno matrix
-deadorno = zeros(81, 16);
+deadorno = zeros(1296, 3);
 % (II) first time model results reach 0.1 proportion tips 
 % alive will replace 0 for that entry in deadtime matrix
-deadtime = zeros(81, 16);
+deadtime = zeros(1296, 3);
 
 % loop through each value of A(0)
 % within loop, loop through each value of H(0)
@@ -202,13 +202,19 @@ for Acount = 1 : 81
         h_final = model_sol(:, 1);
         a_final = model_sol(:, 2);
         
+        % save initial conditions in result matrices
+        deadorno(16 * (Acount - 1) + Hcount, 1) = h_0;
+        deadorno(16 * (Acount - 1) + Hcount, 2) = a_0;
+        deadtime(16 * (Acount - 1) + Hcount, 1) = h_0;
+        deadtime(16 * (Acount - 1) + Hcount, 2) = a_0;
+
         % if model solution ever reaches 0.1 proportion tips alive
         if any(h_final <= 0.1)
             % change entry of deadorno from 0 to 1
-            deadorno(Acount, Hcount) = 1;
+            deadorno(16 * (Acount - 1) + Hcount, 3) = 1;
             % change entry of deadtime to first time model reachs 0.1
             % proportion tips alive
-            deadtime(Acount, Hcount) = t_full(min(find(h_final <= 0.1))) ./ 52;
+            deadtime(16 * (Acount - 1) + Hcount, 3) = t_full(min(find(h_final <= 0.1))) ./ 52;
         end
         
         %saving model solutions for these initial conditions
