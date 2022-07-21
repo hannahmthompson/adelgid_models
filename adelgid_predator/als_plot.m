@@ -8,24 +8,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 % Baseline- all three species present
-% a_0 = 1.46016237638577000; 
-% la_0 = 3;
-% sa_0 = 0.50009720527582800;
-
-% No L. nigrinus
 a_0 = 1.46016237638577000; 
-la_0 = 0;
+la_0 = 3;
 sa_0 = 0.50009720527582800;
-
-% No S. tsugae
-% a_0 = 1.46016237638577000; 
-% la_0 = 3;
-% sa_0 = 0;
-
-% No predators
-% a_0 = 1.46016237638577000; 
-% la_0 = 0;
-% sa_0 = 0;
 
 init_1 = [a_0; la_0; sa_0]; 
 
@@ -430,78 +415,6 @@ sl_final_plot(sl_final_plot == 0) = nan;
 sa_final_plot = sa_final;
 sa_final_plot(sa_final_plot == 0) = nan; 
 
-% plotting all results
-figure
-hold on
-ax = gca;
-ax.FontSize = 13;
-% adelgid eggs model results in black- dotted line
-plot(t_full ./ 52, ae_final_plot, 'k-.', 'LineWidth', 3);
-% adelgid model results in back- solid line
-plot(t_full ./ 52, a_final_plot, 'k-', 'LineWidth', 3);
-% LN larvae model results in orange- dashed line
-plot(t_full ./ 52, ll_final_plot, '--', 'Color', [0.8, 0.4, 0], 'LineWidth', 3);
-% LN adults model results in orange- solid line 
-plot(t_full ./ 52, la_final_plot, '-', 'Color', [0.8, 0.4, 0], 'LineWidth', 3);
-% ST larvae model results in blue- dashed line
-plot(t_full ./ 52, sl_final_plot, '--', 'Color', [0, 0.45, 0.7], 'LineWidth', 3);
-% ST adults model results in blue- solid line
-plot(t_full ./ 52, sa_final_plot, '-', 'Color', [0, 0.45, 0.7], 'LineWidth', 3);
-% adelgid data in black- solid diamonds
-plot(a_data_time ./ 104, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0, 0], 'MarkerFaceColor', [0, 0, 0]);
-% LN larva data in orange- open diamonds
-plot(ll_data_time ./ 104, ll_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [1, 1, 1]);
-% LN adult data in orange- solid diamonds
-plot(la_data_time ./ 104, la_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [0.8, 0.4, 0]);
-% ST larva data in blue- open diamonds
-plot(sl_data_time ./ 104, sl_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [1, 1, 1]);
-% ST adult data in blue- solid diamonds
-plot(sa_data_time ./ 104, sa_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [0, 0.45, 0.7]);
-xlabel('Time (years)', 'FontSize', 13)
-ylabel('Density', 'FontSize', 13)
-legend('A. tsugae eggs, Ae', 'A. tsugae, A', 'L. nigirinus larvae, Ll', 'L. nigrinus adults, La', 'S. tsugae larvae, Sl', 'S. tsugae adults, Sa', 'Adelgid data, A', 'L. nigirinus larvae data, Ll', 'L. nigrinus adult data, La', 'S. tsugae larvae data, Sl', 'S. tsugae adult data, Sa')
-
-% adelgid only
-figure
-hold on
-ax = gca;
-ax.FontSize = 13;
-% adelgid eggs model results in black- dotted line
-plot(t_full ./ 52, ae_final_plot, 'k-.', 'LineWidth', 3);
-% adelgid model results in back- solid line
-plot(t_full ./ 52, a_final_plot, 'k-', 'LineWidth', 3);
-% adelgid data in black- solid diamonds
-plot(a_data_time ./ 104, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0, 0], 'MarkerFaceColor', [0, 0, 0]);
-xlabel('Time (years)', 'FontSize', 13)
-ylabel('Density', 'FontSize', 13)
-legend('A. tsugae eggs, Ae', 'A. tsugae, A', 'Adelgid data, A')
-
-%plotting only predator results
-%plotting all results
-figure
-hold on
-ax = gca;
-ax.FontSize = 13;
-% LN larvae model results in orange- dashed line
-plot(t_full ./ 52, ll_final_plot, '--', 'Color', [0.8, 0.4, 0], 'LineWidth', 3);
-% LN adults model results in orange- solid line 
-plot(t_full ./ 52, la_final_plot, '-', 'Color', [0.8, 0.4, 0], 'LineWidth', 3);
-% ST larvae model results in blue- dashed line
-plot(t_full ./ 52, sl_final_plot, '--', 'Color', [0, 0.45, 0.7], 'LineWidth', 3);
-% ST adults model results in blue- solid line
-plot(t_full ./ 52, sa_final_plot, '-', 'Color', [0, 0.45, 0.7], 'LineWidth', 3);
-% LN larva data in orange- open diamonds
-plot(ll_data_time ./ 104, ll_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [1, 1, 1]);
-% LN adult data in orange- solid diamonds
-plot(la_data_time ./ 104, la_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [0.8, 0.4, 0]);
-% ST larva data in blue- open diamonds
-plot(sl_data_time ./ 104, sl_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [1, 1, 1]);
-% ST adult data in blue- solid diamonds
-plot(sa_data_time ./ 104, sa_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [0, 0.45, 0.7]);
-xlabel('Time (years)', 'FontSize', 13)
-ylabel('Density', 'FontSize', 13)
-legend('L. nigirinus larvae, Ll','L. nigrinus adults, La','S. tsugae larvae, Sl','S. tsugae adults, Sa','L. nigirinus larvae data, Ll','L. nigrinus adult data, La','S. tsugae larvae data, Sl','S. tsugae adult data, Sa')
-
 %individual species subplots
 figure
 subplot(3, 1, 1)
@@ -513,7 +426,7 @@ plot(t_full ./ 52, ae_final_plot, 'k-.', 'LineWidth', 3);
 %adelgid in black
 plot(t_full ./ 52, a_final_plot, 'k-', 'LineWidth', 3); 
 %adelgid data in black
-plot(a_data_time ./ 104, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0, 0], 'MarkerFaceColor', [0, 0, 0]);
+scatter(a_data_time ./ 104, a_data, 80, 'd', 'MarkerEdgeColor', [0, 0, 0], 'MarkerFaceColor', [0, 0, 0]);
 xlabel('Time (years) starting week 43 (October)')
 ylabel('A. tsugae density (per cm)')
 legend('A. tsugae eggs, Ae', 'A. tsugae, A', 'A. tsugae data, A', 'Location', 'northwest')
@@ -523,14 +436,14 @@ hold on
 ax = gca;
 ax.FontSize = 11;
 %LN larva in orange
-plot(t_full ./ 52, ll_final_plot, '--', 'Color', [0.8, 0.4, 0], 'LineWidth', 3);
+plot(t_full ./ 52, ll_final_plot, '--', 'Color', [0.8, 0.4, 0, 0.5], 'LineWidth', 3);
 %LN adult in orange
-plot(t_full ./ 52, la_final_plot, '-', 'Color', [0.8, 0.4, 0], 'LineWidth', 3); 
+plot(t_full ./ 52, la_final_plot, '-', 'Color', [0.8, 0.4, 0, 0.5], 'LineWidth', 3); 
 %LN larva data in orange
-plot(ll_data_time ./ 104, ll_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [1, 1, 1], 'LineWidth', 2);
+scatter(ll_data_time ./ 104, ll_data, 80, 'd', 'MarkerEdgeColor', [0.8, 0.4, 0], 'LineWidth', 2, 'MarkerEdgeAlpha', 0.5);
 %LN adult data in orange
-plot(la_data_time ./ 104, la_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [0.8, 0.4, 0]);
-ylim([0, 9])
+scatter(la_data_time ./ 104, la_data, 80, 'd', 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerEdgeAlpha', 0.5, 'MarkerFaceColor', [0.8, 0.4, 0], 'MarkerFaceAlpha', 0.5);
+ylim([0, 9.8])
 xlabel('Time (years) starting week 43 (October)')
 ylabel('L. nigrinus density')
 legend('L. nigirinus larvae, Ll', 'L. nigrinus adults, La', 'L. nigirinus larvae data, Ll', 'L. nigrinus adults data, La', 'Location', 'northwest')
@@ -540,28 +453,23 @@ hold on
 ax = gca;
 ax.FontSize = 11;
 %ST larva in blue
-plot(t_full ./ 52, sl_final_plot, '--', 'Color', [0, 0.45, 0.7], 'LineWidth', 3); 
+plot(t_full ./ 52, sl_final_plot, '--', 'Color', [0, 0.45, 0.7, 0.8], 'LineWidth', 3); 
 %ST adult in blue
-plot(t_full ./ 52, sa_final_plot, '-', 'Color', [0, 0.45, 0.7], 'LineWidth', 3); 
+plot(t_full ./ 52, sa_final_plot, '-', 'Color', [0, 0.45, 0.7, 0.8], 'LineWidth', 3); 
 %ST larva data in blue
-plot(sl_data_time ./ 104, sl_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [1, 1, 1], 'LineWidth', 2);
+scatter(sl_data_time ./ 104, sl_data, 80, 'd', 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerEdgeAlpha', 0.8, 'LineWidth', 2, 'MarkerFaceColor', [1, 1, 1]);
 %ST adult data in blue
-plot(sa_data_time ./ 104, sa_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [0, 0.45, 0.7]); 
-ylim([0, 7.5])
+scatter(sa_data_time ./ 104, sa_data, 80, 'd', 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerEdgeAlpha', 0.8, 'MarkerFaceColor', [0, 0.45, 0.7], 'MarkerFaceAlpha', 0.8); 
+ylim([0, 8])
 xlabel('Time (years) starting week 43 (October)')
 ylabel('S. tsugae density')
 legend('S. tsugae larvae, Sl', 'S. tsugae adults, Sa', 'S. tsugae larvae data, Sl', 'S. tsugae adults data, Sa', 'Location', 'northwest')
 
-%non egg adelgids model results only
-figure
-
-hold on
-ax = gca;
-ax.FontSize = 13;
-%adelgid in black
-plot(t_full ./ 52, a_final_plot, 'k-', 'LineWidth', 3); 
-xlabel('Time (years)', 'FontSize', 13)
-ylabel('A. tsugae Density', 'FontSize', 13)
+% save figure as .jpeg file
+filename = ['4_ALS_paraest.jpeg'];
+f = gcf;
+f.Position(3:4) = [550, 600]
+exportgraphics(f, filename, 'Resolution', 1000)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Model
