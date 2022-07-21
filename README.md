@@ -6,14 +6,15 @@ Two models of hemlock woolly adeglid, _Adelges tsugae_ Annand (Hemiptera: Adelgi
 
 * Adelgid-Predator model: _A. tsugae_, and biological control beetle predators _Laricobius nigrinus_ Fender (Coleoptera: Derodontidae), and _Sasajiscymnus tsugae_ (Sasaji and McClure) (Coleoptera: Coccinellidae) densities
 
-The models and data here are presented in a doctoral dissertation from the University of Tennessee Knoxville, and two manuscripts resulting from it.
+The models and data here are presented in a doctoral dissertation from the University of Tennessee Knoxville, and two papers resulting from it.
 
 * Thompson, Hannah M., "Data Driven Models of Hemlock Woolly Adelgid Impacts and Biological Control. " PhD diss., University of Tennessee, 2021.
 [https://trace.tennessee.edu/utk_graddiss/6736](https://trace.tennessee.edu/utk_graddiss/6736)
 
 * (in preparation) Thompson, H. M., McAvoy, T. J., Salom, S. M., Wiggins, G. J., Lenhart, S., Data-driven modeling of cycles of hemlock woolly adelgid densities and hemlock tree health 
 
-* (in preparation) Thompson, H. M., Wiggins, G. J., Lenhart, S. Modeling interactions of hemlock woolly adelgid and two biological control predatory beetle species in the Great Smoky Mountains National Park
+* Thompson, H. M., Wiggins, G. , Lenhart, S. Modeling interactions of hemlock woolly adelgid and two biological control predatory beetle species in the Great Smoky Mountains National Park. Biological Control, 173, 2022. [https://doi.org/10.1016/j.biocontrol.2022.104986](https://doi.org/10.1016/j.biocontrol.2022.104986)
+
 
 ## Authors
 
@@ -56,6 +57,7 @@ The data used for development and parameter estimation for the Adelgid-Predator 
     * `als_paraest.m` is the parameter estimation of the Adelgid-Predator model
     * `als_plot.m` plots the data and model simulation results using the optimal parameter values found through the parameter estimation for the Adelgid-Predator model
     * `als_scenarios_hemlock.m` plots the model simulation results using the optimal parameter values found through the parameter estimation, but varying the hemlock carrying capacity parameter value for the Adelgid-Predator model
+    * `als_scenarios_predator.m` plots the model simulation results using the optimal parameter values found through the parameter estimation, but varying the the presence or absence of the predators through changing initial conditions for the Adelgid-Predator model
     * `als_seasonality_figure.pptx` is a figure representing the seasonality of the Adelgid-Predator model
 
 * `./hemlock_adelgid/` is the directory containing the Hemlock-Adelgid model files
