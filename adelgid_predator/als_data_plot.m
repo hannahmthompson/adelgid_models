@@ -23,17 +23,23 @@ hold on
 ax = gca;
 ax.FontSize = 16;
 % adelgid data in black
-plot(a_data_time ./ 52, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0, 0], 'MarkerFaceColor', [0, 0, 0]);
+scatter(a_data_time ./ 52, a_data, 80, 'd', 'MarkerEdgeColor', [0, 0, 0], 'MarkerFaceColor', [0, 0, 0]);
 % LN larva data in orange, open diamonds
-plot(ll_data_time ./ 52, ll_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'LineWidth', 2, 'MarkerFaceColor', [1, 1, 1]);
+scatter(ll_data_time ./ 52, ll_data, 80, 'd', 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerEdgeAlpha', 0.5, 'LineWidth', 2, 'MarkerFaceColor', [1, 1, 1]);
 % LN adult data in orange, closed diamonds
-plot(la_data_time ./ 52, la_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [0.8, 0.4, 0]);
+scatter(la_data_time ./ 52, la_data, 80, 'd', 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerEdgeAlpha', 0.5, 'MarkerFaceColor', [0.8, 0.4, 0], 'MarkerFaceAlpha', 0.5);
 % ST larva data in blue, open diamonds
-plot(sl_data_time ./ 52, sl_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'LineWidth', 2, 'MarkerFaceColor', [1, 1, 1]);
+scatter(sl_data_time ./ 52, sl_data, 80, 'd', 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerEdgeAlpha', 0.8,'LineWidth', 2, 'MarkerFaceColor', [1, 1, 1]);
 % ST adult data in blue, closed diamonds
-plot(sa_data_time ./ 52, sa_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [0, 0.45, 0.7]); 
+scatter(sa_data_time ./ 52, sa_data, 80, 'd', 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerEdgeAlpha', 0.8,'MarkerFaceColor', [0, 0.45, 0.7], 'MarkerFaceAlpha', 0.8); 
 ylim([0, 8.3])
 xlabel('Time (years)', 'FontSize', 16)
 ylabel('Density', 'FontSize', 16)
 % with default plot size and default legend placement, legend may overlap data
-legend('Adelgid data, A', 'L. nigirinus larvae data, Ll', 'L. nigrinus adult data, La', 'S. tsugae larvae data, Sl', 'S. tsugae adult data, Sa')
+legend('Adelgid data, A', 'L. nigirinus larvae data, Ll', 'L. nigrinus adult data, La', 'S. tsugae larvae data, Sl', 'S. tsugae adult data, Sa', 'Location', 'northwest')
+
+% save figure as .jpeg file
+filename = ['8_appendixB_ALS_data.jpeg'];
+f = gcf;
+f.Position(3:4) = [500, 400]
+exportgraphics(f, filename, 'Resolution', 1000)

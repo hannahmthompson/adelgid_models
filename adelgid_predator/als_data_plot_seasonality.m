@@ -44,14 +44,14 @@ hold on
 ax = gca;
 ax.FontSize = 13;
 % LN larva data in shades of orange, open diamonds
-plot(ll_1_time, ll_1, 'd-', 'Color', [0.8, 0.4, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [1, 1, 1]);
-plot(ll_2_time, ll_2, 'd-', 'Color', [0.6, 0.2, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.6, 0.2, 0], 'MarkerFaceColor', [1, 1, 1]);
-plot(ll_3_time, ll_3, 'd-', 'Color', [0.4, 0, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.4, 0, 0], 'MarkerFaceColor', [1, 1, 1]);
+plot(ll_1_time, ll_1, 'd-', 'Color', [0.8, 0.4, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [1, 1, 1]);
+plot(ll_2_time, ll_2, 'd-', 'Color', [0.6, 0.2, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.6, 0.2, 0], 'MarkerFaceColor', [1, 1, 1]);
+plot(ll_3_time, ll_3, 'd-', 'Color', [0.4, 0, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.4, 0, 0], 'MarkerFaceColor', [1, 1, 1]);
 xlabel('Time (weeks in calendar year)', 'FontSize', 13)
 ylabel('L. nigrinus larva density', 'FontSize', 13)
 xlim([0, 52])
 ylim([0, 9])
-legend('2011', '2012', '2013')
+legend('2011', '2012', '2013','Orientation','horizontal')
 
 subplot(4, 1, 2)
 hold on
@@ -59,41 +59,47 @@ ax = gca;
 ax.FontSize = 13;
 % LN adult data in shades of orange, closed diamonds
 % save plot objects to use in legend, so each year only appears in legend once
-p(1) = plot(lab_0_time, lab_0, 'd-', 'Color', [1, 0.6, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [1, 0.6, 0], 'MarkerFaceColor', [1, 0.6, 0]);
-p(2) = plot(la_1_time, la_1, 'd-', 'Color', [0.8, 0.4, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [0.8, 0.4, 0]);
-p(3) = plot(lab_1_time, lab_1, 'd-', 'Color', [0.8, 0.4, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [0.8, 0.4, 0]);
-p(4) = plot(la_2_time, la_2, 'd-', 'Color', [0.6, 0.2, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.6, 0.2, 0], 'MarkerFaceColor', [0.6, 0.2, 0]);
-p(5) = plot(lab_2_time, lab_2, 'd-', 'Color', [0.6, 0.2, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.6, 0.2, 0], 'MarkerFaceColor', [0.6, 0.2, 0]);
-p(6) = plot(la_3_time, la_3, 'd-', 'Color', [0.4, 0, 0], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.4, 0, 0], 'MarkerFaceColor', [0.4, 0, 0]);
+p(1) = plot(lab_0_time, lab_0, 'd-', 'Color', [1, 0.6, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [1, 0.6, 0], 'MarkerFaceColor', [1, 0.6, 0]);
+p(2) = plot(la_1_time, la_1, 'd-', 'Color', [0.8, 0.4, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [0.8, 0.4, 0]);
+p(3) = plot(lab_1_time, lab_1, 'd-', 'Color', [0.8, 0.4, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.8, 0.4, 0], 'MarkerFaceColor', [0.8, 0.4, 0]);
+p(4) = plot(la_2_time, la_2, 'd-', 'Color', [0.6, 0.2, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.6, 0.2, 0], 'MarkerFaceColor', [0.6, 0.2, 0]);
+p(5) = plot(lab_2_time, lab_2, 'd-', 'Color', [0.6, 0.2, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.6, 0.2, 0], 'MarkerFaceColor', [0.6, 0.2, 0]);
+p(6) = plot(la_3_time, la_3, 'd-', 'Color', [0.4, 0, 0, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0.4, 0, 0], 'MarkerFaceColor', [0.4, 0, 0]);
 xlabel('Time (weeks in calendar year)', 'FontSize', 13)
 ylabel('L. nigrinus adult density', 'FontSize', 13)
 xlim([0, 52])
 ylim([0, 6])
-legend([p(1), p(2), p(4), p(6)], '2010', '2011', '2012', '2013')
+legend([p(1), p(2), p(4), p(6)], '2010', '2011', '2012', '2013','Orientation', 'horizontal', 'Location', 'north')
 
 subplot(4, 1, 3)
 hold on
 ax = gca;
 ax.FontSize = 13;
 % ST larva data in shades of blue, open diamonds
-plot(sl_2_time, sl_2, 'd-', 'Color', [0, 0.45, 0.7], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [1, 1, 1]);
-plot(sl_3_time, sl_3, 'd-', 'Color', [0, 0.25, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.25, 0.5], 'MarkerFaceColor', [1, 1, 1]);
+plot(sl_2_time, sl_2, 'd-', 'Color', [0, 0.45, 0.7, 0.8], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [1, 1, 1]);
+plot(sl_3_time, sl_3, 'd-', 'Color', [0, 0.25, 0.5, 0.8], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.25, 0.5], 'MarkerFaceColor', [1, 1, 1]);
 xlabel('Time (weeks in calendar year)', 'FontSize', 13)
 ylabel('S. tsugae larva density', 'FontSize', 13)
 xlim([0, 52])
 ylim([0, 5])
-legend('2012', '2013')
+legend('2012', '2013','Orientation','horizontal')
 
 subplot( 4, 1, 4 )
 hold on
 ax = gca;
 ax.FontSize = 13;
 % ST adult data in shades of blue, closed diamonds
-plot(sa_1_time, sa_1, 'd-', 'Color', [0, 0.65, 0.9], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.65, 0.9], 'MarkerFaceColor', [0, 0.65, 0.9]);%LN larvae data in orange
-plot(sa_2_time, sa_2, 'd-', 'Color', [0, 0.45, 0.7], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [0, 0.45, 0.7]);%LN larvae data in orange
-plot(sa_3_time, sa_3, 'd-', 'Color', [0, 0.25, 0.5], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.25, 0.5], 'MarkerFaceColor', [0, 0.25, 0.5]);%LN larvae data in orange
+plot(sa_1_time, sa_1, 'd-', 'Color', [0, 0.65, 0.9, 0.8], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.65, 0.9], 'MarkerFaceColor', [0, 0.65, 0.9]);%LN larvae data in orange
+plot(sa_2_time, sa_2, 'd-', 'Color', [0, 0.45, 0.7, 0.8], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.45, 0.7], 'MarkerFaceColor', [0, 0.45, 0.7]);%LN larvae data in orange
+plot(sa_3_time, sa_3, 'd-', 'Color', [0, 0.25, 0.5, 0.8], 'LineWidth', 3, 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.25, 0.5], 'MarkerFaceColor', [0, 0.25, 0.5]);%LN larvae data in orange
 xlabel('Time (weeks in calendar year)', 'FontSize', 13)
 ylabel('S. tsugae adult density', 'FontSize', 13)
 xlim([0, 52])
 ylim([0, 4])
-legend('2011', '2012', '2013')
+legend('2011', '2012', '2013','Orientation','horizontal')
+
+% save figure as .jpeg file
+filename = ['ALS_data_seasonality.jpeg'];
+f = gcf;
+f.Position(3:4) = [600, 700]
+exportgraphics(f, filename, 'Resolution', 1000)

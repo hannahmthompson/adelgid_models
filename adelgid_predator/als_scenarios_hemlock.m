@@ -400,7 +400,7 @@ for Hset=[0.45 0.65 0.8 0.95]
     %individual species subplots
     figure
     
-    subplot(3, 1, 1)
+    subplot(2, 1, 1)
     hold on
     ax = gca;
     ax.FontSize = 11;
@@ -408,36 +408,33 @@ for Hset=[0.45 0.65 0.8 0.95]
     plot(t_full ./ 52, ae_final_plot, 'k-.', 'LineWidth', 3);
     %adelgid in black
     plot(t_full ./ 52, a_final_plot, 'k-', 'LineWidth', 3);
+    ylim([0, max(ae_final_plot) + min(0.3 * max(ae_final_plot), 10)])
     xlabel('Time (years) starting week 43 (October)')
     ylabel('A. tsugae density (per cm)')
     legend('A. tsugae eggs, Ae', 'A. tsugae, A', 'Location', 'northwest')
     
-    subplot(3, 1, 2)
+    subplot(2, 1, 2)
     hold on
     ax = gca;
     ax.FontSize = 11;
     %LN larva in orange
-    plot(t_full ./ 52, ll_final_plot, '--', 'Color', [0.8, 0.4, 0], 'LineWidth', 3);
+    plot(t_full ./ 52, ll_final_plot, '--', 'Color', [0.8, 0.4, 0, 0.5], 'LineWidth', 3);
     %LN adult in orange
-    plot(t_full ./ 52, la_final_plot, '-', 'Color', [0.8, 0.4, 0], 'LineWidth', 3); 
-    ylim([0, 9])
-    xlabel('Time (years) starting week 43 (October)')
-    ylabel('L. nigrinus density')
-    legend('L. nigirinus larvae, Ll', 'L. nigrinus adults, La', 'Location', 'northwest')
-    
-    subplot(3, 1, 3)
-    hold on
-    ax = gca;
-    ax.FontSize = 11;
+    plot(t_full ./ 52, la_final_plot, '-', 'Color', [0.8, 0.4, 0, 0.5], 'LineWidth', 3); 
     %ST larva in blue
-    plot(t_full ./ 52, sl_final_plot, '--', 'Color', [0, 0.45, 0.7], 'LineWidth', 3); 
+    plot(t_full ./ 52, sl_final_plot, '--', 'Color', [0, 0.45, 0.7, 0.8], 'LineWidth', 3); 
     %ST adult in blue
-    plot(t_full ./ 52, sa_final_plot, '-', 'Color', [0, 0.45, 0.7], 'LineWidth', 3); 
-    ylim([0, 7.5])
+    plot(t_full ./ 52, sa_final_plot, '-', 'Color', [0, 0.45, 0.7, 0.8], 'LineWidth', 3); 
+    ylim([0, max(ll_final_plot(1:104)) + 3])
     xlabel('Time (years) starting week 43 (October)')
-    ylabel('S. tsugae density')
-    legend('S. tsugae larvae, Sl', 'S. tsugae adults, Sa', 'Location', 'northwest')
+    ylabel('Density')
+    legend('L. nigirinus larvae, Ll', 'L. nigrinus adults, La', 'S. tsugae larvae, Sl', 'S. tsugae adults, Sa', 'Location', 'northwest')
 
+    % save figure as .jpeg file
+    filename = ['ALS_z_' num2str(Hset * 100) '.jpeg'];
+    f = gcf;
+    f.Position(3:4) = [500, 500]
+    exportgraphics(f, filename, 'Resolution', 1000)
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
