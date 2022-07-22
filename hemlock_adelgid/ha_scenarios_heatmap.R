@@ -28,7 +28,7 @@ heat1 <- ggplot(group_1, aes(A, H)) +
     panel.grid.minor = element_blank(),
     axis.ticks.length = unit(-.3, "cm"))
 heat1
-ggsave("./ha_group_1_heatmap.png", heat1,
+ggsave("./ha_group_1_heatmap.jpg", heat1,
        width = 6, height = 5, dpi = 600, bg = "white")
 
 # heat map for group 2
@@ -45,5 +45,5 @@ heat2 <- ggplot(group_2, aes(A, H)) +
     panel.grid.minor = element_blank(),
     axis.ticks.length = unit(-.3, "cm"))
 heat2
-ggsave("./ha_group_2_heatmap.png", heat2,
+ggsave("./ha_group_2_heatmap.jpg", heat2,
        width = 6, height = 5, dpi = 600, bg = "white")
