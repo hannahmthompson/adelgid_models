@@ -238,6 +238,10 @@ for q = 1 : length(init_test)
     xlabel('Time (years) starting week 15 (April)', 'FontSize',16)
     ylabel('A. tsugae density (per cm)', 'FontSize', 16)
     
+    % save figure as .jpg file
+    filename = ['ha_group_1_H_' num2str(h_0 * 100) '_A_' num2str(a_0 * 10) '.jpg'];
+    f = gcf;
+    exportgraphics(f, filename, 'Resolution', 600)
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -216,6 +216,7 @@ ax.FontSize = 16;
 % model results in solid line, data as diamonds
 plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, .5], 'LineWidth', 3);
 plot((time_entries_h_data - 79) ./ 52, h_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [0, 0.7, .6], 'MarkerFaceColor', [0, 0.7, .6])
+ylim([0, 0.8])
 xlabel('Time (years) starting week 27 (July)', 'FontSize', 16)
 ylabel('Proportion tips alive', 'FontSize', 16)
 
@@ -229,6 +230,10 @@ plot(t_full ./ 52, a_final, 'k-', 'LineWidth', 3);
 plot((time_entries_a_data - 79) ./ 52, a_data, 'd', 'MarkerSize', 8, 'MarkerEdgeColor', [.1, 0.1, .1], 'MarkerFaceColor', [.1, 0.1, .1])
 xlabel('Time (years) starting week 27 (July)', 'FontSize', 16)
 ylabel('A. tsugae density (per cm)', 'FontSize', 16)
+
+% save figure as .jpg file
+f = gcf;
+exportgraphics(f, 'ha_group_2_paraest.jpg', 'Resolution', 600)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Model

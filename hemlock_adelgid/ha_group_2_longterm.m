@@ -191,7 +191,7 @@ ax = gca;
 ax.FontSize = 16;
 % tips alive in green
 % model results in solid line, data as diamonds
-plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, 0.5], 'LineWidth', 1.25)
+plot(t_full ./ 52, h_final, '-', 'Color', [0, 0.6, 0.5], 'LineWidth', 1.15)
 ylim([0, 1])
 xlabel('Time (years) starting week 27 (July)', 'FontSize', 16)
 ylabel('Proportion tips alive', 'FontSize', 16)
@@ -202,9 +202,14 @@ ax = gca;
 ax.FontSize = 16;
 % adelgid density in black
 % model results in solid line, data as diamonds
-plot(t_full ./ 52, a_final, 'k-', 'LineWidth', 1.25)
+plot(t_full ./ 52, a_final, 'k-', 'LineWidth', 1.15)
 xlabel('Time (years) starting week 27 (July)', 'FontSize', 16)
 ylabel('A. tsugae density (per cm)', 'FontSize', 16)
+
+% save figure as .jpg file
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 14, 6], 'PaperUnits', 'Inches', 'PaperSize', [14, 6])
+f = gcf;
+exportgraphics(f, 'ha_group_2_longterm.jpg', 'Resolution', 600)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Model

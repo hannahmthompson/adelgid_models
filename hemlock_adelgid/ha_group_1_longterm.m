@@ -207,6 +207,11 @@ plot(t_full ./ 52, a_final, 'k-', 'LineWidth',  1.5)
 xlabel('Time (years) starting week 15 (April)', 'FontSize', 16)
 ylabel('A. tsugae density (per cm)', 'FontSize', 16)
 
+% save figure as .jpg file
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 14, 6], 'PaperUnits', 'Inches', 'PaperSize', [14, 6])
+f = gcf;
+exportgraphics(f, 'ha_group_1_longterm.jpg', 'Resolution', 600)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Model
 % Create a function for each system of ordinary differential

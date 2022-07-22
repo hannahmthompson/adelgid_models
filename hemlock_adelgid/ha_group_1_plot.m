@@ -250,6 +250,10 @@ plot((time_entries_a_data - 15) ./ 52, a_data, 'd', 'MarkerSize', 8, 'MarkerEdge
 xlabel('Time (years) starting week 15 (April)', 'FontSize', 16)
 ylabel('A. tsugae density (per cm)', 'FontSize', 16)
 
+% save figure as .jpg file
+f = gcf;
+exportgraphics(f, 'ha_group_1_paraest.jpg', 'Resolution', 600)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Model
 % Create a function for each system of ordinary differential
