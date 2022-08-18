@@ -47,11 +47,10 @@ The data used for development and parameter estimation for the Adelgid-Predator 
 
 ## Repository Organization 
 
-* `README.md` is this document 
 * `./adelgid_predator/` is the directory containing the Adelgid-Predator model files
-    * `als_data_plot_seasonality.m` plots the predator data over a calendar year to show seasonality 
-    * `als_data_plot.m` plots a time series of the adelgid-predator data 
     * `als_data.xlsx` contains data used in the Adelgid-Predator model
+    * `als_data_plot.m` plots a time series of the adelgid-predator data 
+    * `als_data_plot_seasonality.m` plots the predator data over a calendar year to show seasonality 
     * `als_graphical_abstract.pptx` is the graphical abstract for the Adelgid-Predator model
     * `als_model_schematic.pptx` is a schematic diagram of the biological mechanisms represented in the Adelgid-Predator model
     * `als_paraest.m` is the parameter estimation of the Adelgid-Predator model
@@ -70,6 +69,11 @@ The data used for development and parameter estimation for the Adelgid-Predator 
         * `ha_group_i_scenarios.m` determines if/when model simulation results reach the proportion tips alive value likely to result in hemlock mortality for varying initial conditions for Group _i_ for the Hemlock-Adelgid model
         * `ha_group_i_scenarios_plot.m` plots model simulation results for various initial conditions for Group _i_ for the Hemlock-Adelgid model
     * `ha_scenarios_heatmap.R` plots the results of the varied initial condition scenarios as a heatmap for both groups for the Hemlock-Adelgid model
+* `.gitignore` lists the files types for git to not track
+* `LICENSE_Apache_2.0.md` is the License for the code in this project
+* `LICENSE_Attribution_4.0_International.md` is the license for the data used in this project
+* `README.html` is the html version of this document
+* `README.md` is this document 
     
 ## Parameter Estimation
 
@@ -102,6 +106,10 @@ There are four main sections of the code:
     * We use a function for each system of ordinary differential equations in our model and call these functions in sections 2 and 3 when we are solving our systems.
 
 We can test the code by using test data. We simulate the test data by choosing values for all parameters and solving the model. The test data is the state function values at some time points. We use the same time points where we have real data. Using this test data, run the parameter estimation. The optimal parameter values found should agree with the parameter values used to simulate the test data.
+
+## License
+
+The data used in this project (files `als_data.xlsx` and `ha_data.xlsx`) are licensed under the [Creative Commons Attribution 4.0.](https://creativecommons.org/licenses/by/4.0/) The remaining content of this project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 [^1]: T. McAvoy, W. T. Mays, S. M. Salom, and L. T. Kok. Impact of imidacloprid on hemlock woolly adelgid _(Adelges tsugae)_ and water quality at Mt. Lake, Virginia. In B. Onken and R. Reardon, editors, _Third Symposium on Hemlock Woolly Adelgid in the Eastern United States_, pages 324–334. Forest Health Technology Enterprise Team, 2005
 
