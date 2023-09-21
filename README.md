@@ -11,9 +11,9 @@ The models and data here are presented in a doctoral dissertation from the Unive
 * Thompson, Hannah M., "Data Driven Models of Hemlock Woolly Adelgid Impacts and Biological Control. " PhD diss., University of Tennessee, 2021.
 [https://trace.tennessee.edu/utk_graddiss/6736](https://trace.tennessee.edu/utk_graddiss/6736)
 
-* (in preparation) Thompson, H. M., McAvoy, T. J., Salom, S. M., Wiggins, G. J., Lenhart, S., Data-driven modeling of cycles of hemlock woolly adelgid densities and hemlock tree health 
+* Thompson, H. M., McAvoy, T. J., Salom, S. M., Wiggins, G. J., Lenhart, S. 2023. Interaction of hemlock woolly adelgid populations with host tree health drives population oscillations. Ecosphere, 14(8).  [https://doi.org/10.1002/ecs2.4637](https://doi.org/10.1002/ecs2.4637)
 
-* Thompson, H. M., Wiggins, G. , Lenhart, S. Modeling interactions of hemlock woolly adelgid and two biological control predatory beetle species in the Great Smoky Mountains National Park. Biological Control, 173, 2022. [https://doi.org/10.1016/j.biocontrol.2022.104986](https://doi.org/10.1016/j.biocontrol.2022.104986)
+* Thompson, H. M., Wiggins, G. , Lenhart, S. 2022. Modeling interactions of hemlock woolly adelgid and two biological control predatory beetle species in the Great Smoky Mountains National Park. Biological Control, 173. [https://doi.org/10.1016/j.biocontrol.2022.104986](https://doi.org/10.1016/j.biocontrol.2022.104986)
 
 
 ## Authors
